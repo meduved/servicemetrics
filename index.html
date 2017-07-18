@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/js/mdb.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.2/css/mdb.min.css" rel="stylesheet">
+
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.2/xlsx.core.min.js"></script>
+
+<script type="text/javascript" src="js/main.js"></script>
+<link href="css/main.css" rel="stylesheet">
+
+<div class="container">
+    <!--Panel-->
+
+    <div id="excelload" style="float:right">
+        <label class="btn btn-large btn-warning btn-file">
+            Select excel file <input type="file" id="afile" style="display: none;">
+            </label>
+    </div>
+    <div id="synchro" style="display:none;float:right">
+        <table>
+            <tr>
+                <td style="width:200px"> 
+                        <span>Inserts:</span><span id="inserts"></span><br>
+                        <span>Updates:</span><span id="updates"></span>
+                </td>
+                <td><span class="btn btn-warning" onclick="SynchroData()">Synchronize with Mongo</span></td>
+                <td><span class="btn btn-warning" onclick="reLoad()">Back</span></td>
+            </tr>
+        </table>
+
+        <!--<span>Totally:</span><span id="synchros"></span>-->
+    </div>
+
+    <!--/.Panel-->
+</div>
+<br>
+<br>
+
+
+
+
+<div class="container">
+    <div class="card card-block">
+        <table id="myTable" class="display" width="100%">
+        </table>
+        <hr>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="log">
+    
+</div>
+</body>
+
+</html>
+
+<script>
+    $(document).ready(function () {
+        $('#afile').on("change", function () { handleFile(this) });
+        getData()
+    })
+
+</script>
