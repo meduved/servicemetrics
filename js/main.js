@@ -8,6 +8,7 @@ synchros = 0;
 function reLoad()
 {
 location.reload();
+//main
 }
 
 
